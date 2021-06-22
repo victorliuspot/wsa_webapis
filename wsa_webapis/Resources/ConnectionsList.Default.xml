@@ -1,0 +1,29 @@
+<ConnectionDetail>
+  <AuthType>OnlineFederation</AuthType>
+  <AzureAdAppId>00000000-0000-0000-0000-000000000000</AzureAdAppId>
+  <ConnectionId>40d2a8a0-6613-402c-91cf-8ace8be6b4e0</ConnectionId>
+  <ConnectionName>wsa_ad</ConnectionName>
+  <IsCustomAuth>true</IsCustomAuth>
+  <IsFromSdkLoginCtrl>false</IsFromSdkLoginCtrl>
+  <LastUsedOn>2021-06-21 18:09:31</LastUsedOn>
+  <NewAuthType>AD</NewAuthType>
+  <Organization>211435ad6e774b14be9591419d2849b3</Organization>
+  <OrganizationDataServiceUrl>https://org54e5d65c.api.crm3.dynamics.com/api/data/v9.2/</OrganizationDataServiceUrl>
+  <OrganizationFriendlyName>Development</OrganizationFriendlyName>
+  <OrganizationServiceUrl>https://org54e5d65c.api.crm3.dynamics.com/XRMServices/2011/Organization.svc</OrganizationServiceUrl>
+  <OrganizationUrlName>org54e5d65c</OrganizationUrlName>
+  <OrganizationVersion>9.2.21061.132</OrganizationVersion>
+  <OriginalUrl>https://org54e5d65c.crm3.dynamics.com</OriginalUrl>
+  <SavePassword>true</SavePassword>
+  <ServerName>org54e5d65c.crm3.dynamics.com</ServerName>
+  <ServerPort>443</ServerPort>
+  <TenantId>00000000-0000-0000-0000-000000000000</TenantId>
+  <Timeout />
+  <TimeoutTicks>1200000000</TimeoutTicks>
+  <UseIfd>false</UseIfd>
+  <UseMfa>false</UseMfa>
+  <UserDomain />
+  <UserName>Nan.Ying@wsask.ca</UserName>
+  <UserPassword>/PfR4cWSu5/tlp2sNH8Y11Yd2gpOXQCMEA5st6mvvfs=</UserPassword>
+  <WebApplicationUrl>https://org54e5d65c.crm3.dynamics.com</WebApplicationUrl>
+</ConnectionDetail>

@@ -1,0 +1,35 @@
+﻿@{
+    var sql = "select top 10 subject, notetext, mimetype, filename, documentbody, createdon, createdbyname from annotation where isdocument=1 and mimetype in ('image/JPEG','image/png','image/tiff')";
+    if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+    {
+        sql = $"{sql} and annotationid='{Request.QueryString["id"]}'";
+    }
+    if (!string.IsNullOrEmpty(Request.QueryString["cid"]))
+    {
+        sql = $"{sql} and objectid='{Request.QueryString["cid"]}'";
+
+        var sql2 = $"select * from spot_conditionrating where spot_conditionratingid='{Request.QueryString["cid"]}'";
+    }
+    var images = wsa_webapis.Sql4Cds.SqlQuery.Execute(sql) as System.Data.DataTable;
+    if (images != null)
+    {
+        foreach (System.Data.DataRow image in images.Rows)
+        {
+            var v = $"{image["subject"]}".Replace("Null", "");
+            if (!string.IsNullOrEmpty(v))
+            {
+                <div class="row"><h2>@v</h2></div>
+            }
+            v = $"{image["notetext"]}".Replace("Null", "");
+            if (!string.IsNullOrEmpty(v))
+            {
+                <div class="row"><p>@Html.Raw(v)</p></div>
+            }
+            v = $"data:{image["mimetype"]};base64,{image["documentbody"]}";
+            <div class="row">
+                <img src="@v" alt="@image["filename"]" style="max-width:400px;" />
+            </div>
+        }
+    }
+}
+
