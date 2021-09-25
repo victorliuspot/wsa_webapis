@@ -15,3 +15,26 @@ select,
 textarea {
     max-width: 280px;
 }
+
+@media print {
+    /* use your css selector */
+    .note {
+        page-break-inside: avoid;
+        page-break-after:always;
+    }
+
+    .note:last-of-type {
+        page-break-after:avoid;
+    }
+
+    .noteimg {
+        max-height: 800px;
+    }
+
+    footer {
+        display:none;
+    }
+    .pheader {
+        display: none;
+    }
+}

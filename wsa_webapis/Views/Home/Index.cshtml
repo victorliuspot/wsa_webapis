@@ -24,17 +24,25 @@
     sql = $"{sql} order by createdon desc";
     var images = wsa_webapis.Sql4Cds.SqlQuery.Execute(sql) as System.Data.DataTable;
     <div>&nbsp;</div>
+    if (images == null || images.Rows.Count == 0)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                No Data
+            </div>
+        </div>
+    }
     if (images != null)
     {
         foreach (System.Data.DataRow image in images.Rows)
         {
             var annotation = new wsa_webapis.Models.Annotation(image);
-            <div class="panel panel-default">
+            <div class="panel panel-default note">
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-user"></span> @annotation.createdbyname &nbsp;&nbsp;
                     <span class="glyphicon glyphicon-calendar"></span> @annotation.createdon
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="break-inside:avoid; page-break-inside:avoid;">
                     @{
                         if (!string.IsNullOrEmpty(annotation.subject))
                         {
@@ -46,7 +54,7 @@
                         }
                         if (annotation.mimetype.ToLower().StartsWith("image/"))
                         {
-                            <div><img id="@annotation.annotationid" src="" alt="@annotation.filename" style="max-width:100%" /><span class="imgloading" id="@annotation.annotationid">Loading</span></div>
+                            <div style="text-align:center;"><img id="@annotation.annotationid" src="" alt="@annotation.filename" class="noteimg" style="max-width:100%;" /><span class="imgloading" id="@annotation.annotationid">Loading</span></div>
                         }
                         else if (annotation.mimetype.ToLower().StartsWith("video/"))
                         {
