@@ -51,5 +51,32 @@ namespace wsa_webapis.Controllers
                 return Request.CreateResponse(HttpStatusCode.Gone);
             }
         }
+
+        [Route("api/download/{id}/sp/{lib}")]
+        public HttpResponseMessage GetSP(string id, string lib)
+        {
+            HttpResponseMessage result = null;
+            try
+            {
+                var ret = seaspan.hcwpce.sharepoint.Models.SPAnnotation.LoadImage(lib, int.Parse(id));
+
+                if (ret.Value == null || ret.Value.Length == 0)
+                {
+                    result = Request.CreateResponse(HttpStatusCode.Gone);
+                    return result;
+                }
+
+                result = Request.CreateResponse(HttpStatusCode.OK);
+                result.Content = new ByteArrayContent(ret.Value);
+                result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                result.Content.Headers.ContentDisposition.FileName = ret.Key;
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.Gone);
+            }
+        }
     }
 }

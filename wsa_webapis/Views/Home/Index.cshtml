@@ -4,8 +4,14 @@
         $("img").each(function (i, x) {
             var id = x.getAttribute("id");
             if (id == null || id == undefined)
-                return;                   
-            x.setAttribute("src", "api/Download/" + id);
+                return;
+            var lib = x.getAttribute("lib");
+            if (lib != null) {
+                x.setAttribute("src", "api/Download/" + id + "/sp/" + lib);
+            }
+            else {
+                x.setAttribute("src", "api/Download/" + id);
+            }
             $("span[id=" + id + "]").addClass("hidden");
         });
     });
@@ -17,20 +23,27 @@
     {
         sql = $"{sql} and annotationid='{Request.QueryString["id"]}'";
     }
+    string objectid = null;
     if (!string.IsNullOrEmpty(Request.QueryString["cid"]))
     {
+        objectid = Request.QueryString["cid"];
         sql = $"{sql} and objectid='{Request.QueryString["cid"]}'";
     }
     sql = $"{sql} order by createdon desc";
     var images = wsa_webapis.Sql4Cds.SqlQuery.Execute(sql) as System.Data.DataTable;
+    seaspan.hcwpce.sharepoint.Models.SPAnnotation ann = new seaspan.hcwpce.sharepoint.Models.SPAnnotation(objectid);
     <div>&nbsp;</div>
     if (images == null || images.Rows.Count == 0)
     {
-        <div class="panel panel-default">
-            <div class="panel-body">
-                No Data
+        ann.LoadImages();
+        if (ann.Annotiations.Count == 0)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    No Data
+                </div>
             </div>
-        </div>
+        }
     }
     if (images != null)
     {
@@ -73,5 +86,48 @@
                 </div>
             </div>
         }
+        if (ann.Annotiations.Count > 0)
+        {
+            foreach (var annotation in ann.Annotiations)
+            {
+                <div class="panel panel-default note">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-user"></span> @annotation.CreatedBy.LookupValue &nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-calendar"></span> @annotation.CreatedOn
+                    </div>
+                    <div class="panel-body" style="break-inside:avoid; page-break-inside:avoid;">
+                        @{
+                            if (!string.IsNullOrEmpty(annotation.subject))
+                            {
+                                <div><h4>@annotation.subject</h4></div>
+                            }
+                            if (!string.IsNullOrEmpty(annotation.notetext))
+                            {
+                                <div>@Html.Raw(annotation.notetext)</div>
+                            }
+                            if (annotation.mimetype.ToLower().StartsWith("image/"))
+                            {
+                                <div style="text-align:center;"><img id="@annotation.annotationid" lib="@annotation.LibraryName" src="" alt="@annotation.filename" class="noteimg" style="max-width:100%;" /><span class="imgloading" id="@annotation.annotationid">Loading</span></div>
+                            }
+                            else if (annotation.mimetype.ToLower().StartsWith("video/"))
+                            {
+                                var url = $"api/Download/{annotation.annotationid}/sp/{annotation.LibraryName}";
+                                var html1 = $"<span class='glyphicon glyphicon-download-alt'></span> <a href='{url}' alt='{annotation.filename}'>{annotation.filename}</a>";
+                                <video src="@url" controls="controls" width="100%"></video>
+                                <div>@Html.Raw(html1)</div>
+                            }
+                            else if (annotation.mimetype.Length > 0)
+                            {
+                                var url = $"api/Download/{annotation.annotationid}/sp/{annotation.LibraryName}";
+                                var html1 = $"<span class='glyphicon glyphicon-download-alt'></span> <a href='{url}' alt='{annotation.filename}'>{annotation.filename}</a>";
+                                <div>@Html.Raw(html1)</div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
     }
+
+
 }
