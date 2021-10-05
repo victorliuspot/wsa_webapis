@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -65,9 +66,15 @@ namespace wsa_webapis.Controllers
                     result = Request.CreateResponse(HttpStatusCode.Gone);
                     return result;
                 }
-
+                byte[] v = ret.Value;
+                try
+                {
+                    var s = Encoding.UTF8.GetString(ret.Value);
+                    v = Convert.FromBase64String(s);
+                }
+                catch { }
                 result = Request.CreateResponse(HttpStatusCode.OK);
-                result.Content = new ByteArrayContent(ret.Value);
+                result.Content = new ByteArrayContent(v);
                 result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
                 result.Content.Headers.ContentDisposition.FileName = ret.Key;
 

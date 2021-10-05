@@ -16,7 +16,15 @@ textarea {
     max-width: 280px;
 }
 
+.imglogo {
+    display:none;
+}
 @media print {
+    .imglogo {
+        display:block;
+        float:right;
+        margin-top:-6px;
+    }
     /* use your css selector */
     .note {
         page-break-inside: avoid;

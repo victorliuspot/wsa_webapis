@@ -54,6 +54,9 @@
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-user"></span> @annotation.createdbyname &nbsp;&nbsp;
                     <span class="glyphicon glyphicon-calendar"></span> @annotation.createdon
+                    <div class="imglogo">
+                        <img style="height:32px;" src="~/Images/WSA_Horizontal_clr_cobrand.jpg" />
+                    </div>
                 </div>
                 <div class="panel-body" style="break-inside:avoid; page-break-inside:avoid;">
                     @{
@@ -65,7 +68,8 @@
                         {
                             <div>@Html.Raw(annotation.notetext)</div>
                         }
-                        if (annotation.mimetype.ToLower().StartsWith("image/"))
+                        var fname = $"{annotation.filename}".ToLower().Trim();
+                        if (annotation.mimetype.ToLower().StartsWith("image/") || fname.Contains(".jpg") || fname.Contains(".jepg") || fname.Contains(".png"))
                         {
                             <div style="text-align:center;"><img id="@annotation.annotationid" src="" alt="@annotation.filename" class="noteimg" style="max-width:100%;" /><span class="imgloading" id="@annotation.annotationid">Loading</span></div>
                         }
@@ -79,7 +83,7 @@
                         else if (annotation.mimetype.Length > 0)
                         {
                             var url = $"api/Download/{annotation.annotationid}";
-                            var html1 = $"<span class='glyphicon glyphicon-download-alt'></span> <a href='{url}' alt='{annotation.filename}'>{annotation.filename}</a>";
+                        var html1 = $"<span class='glyphicon glyphicon-download-alt'></span> <a href='{url}' alt='{annotation.filename}'>{annotation.filename}</a>";
                             <div>@Html.Raw(html1)</div>
                         }
                     }

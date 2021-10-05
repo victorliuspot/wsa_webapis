@@ -54,11 +54,22 @@ namespace seaspan.hcwpce.sharepoint.Models
                             case "jpeg":
                             case "png":
                             case "jpg":
+                            case "tif":
+                            case "tiff":
+                            case "gif":
+                            case "eps":
+                            case "raw":
                                 t = $"image/{t}";
                                 break;
                             case "mov":
                             case "3pg":
                             case "quicktime":
+                            case "mp4":
+                            case "mwv":
+                            case "avi":
+                            case "flv":
+                            case "mkv":
+                            case "webm":
                                 t = $"video/{t}";
                                 break;
                             case "pdf":
