@@ -308,6 +308,8 @@
     </Content>
     <None Include="Properties\PublishProfiles\wsacdswebapi - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wsacdswebapi - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\WSAINSPECTIONAPP - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\WSAINSPECTIONAPP - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
