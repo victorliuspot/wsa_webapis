@@ -1,8 +1,8 @@
 <ConnectionDetail>
   <AuthType>OnlineFederation</AuthType>
   <AzureAdAppId>00000000-0000-0000-0000-000000000000</AzureAdAppId>
-  <ConnectionId>bc876542-0ffa-4f04-8a54-d62c3ea9e5cc</ConnectionId>
-  <ConnectionName>wsa_prod</ConnectionName>
+  <ConnectionId>2769c2a2-0179-44da-a74a-31a87d61b013</ConnectionId>
+  <ConnectionName>wsa_prod_service</ConnectionName>
   <IsCustomAuth>true</IsCustomAuth>
   <IsFromSdkLoginCtrl>false</IsFromSdkLoginCtrl>
   <LastUsedOn>0001-01-01 00:00:00</LastUsedOn>
@@ -12,18 +12,18 @@
   <OrganizationFriendlyName>PROD - Inspections and Operator Logs Tracking Application</OrganizationFriendlyName>
   <OrganizationServiceUrl>https://org21a8ec22.api.crm3.dynamics.com/XRMServices/2011/Organization.svc</OrganizationServiceUrl>
   <OrganizationUrlName>org21a8ec22</OrganizationUrlName>
-  <OrganizationVersion>9.2.22024.132</OrganizationVersion>
+  <OrganizationVersion>9.2.22034.142</OrganizationVersion>
   <OriginalUrl>https://org21a8ec22.crm3.dynamics.com</OriginalUrl>
   <SavePassword>true</SavePassword>
   <ServerName>org21a8ec22.crm3.dynamics.com</ServerName>
   <ServerPort>443</ServerPort>
   <TenantId>00000000-0000-0000-0000-000000000000</TenantId>
   <Timeout />
-  <TimeoutTicks>3000000000</TimeoutTicks>
+  <TimeoutTicks>1200000000</TimeoutTicks>
   <UseIfd>false</UseIfd>
   <UseMfa>false</UseMfa>
   <UserDomain />
-  <UserName>Raju.Chambaram@wsask.ca</UserName>
-  <UserPassword>KvGt7RUe2WiIe2tNaaCE23seDZ2CnPN/BetPFuleNT8=</UserPassword>
+  <UserName>wsainspectionsapp@wsask.ca</UserName>
+  <UserPassword>0u8ccheDrmd0QTsYMJZN498H1rkeF6j/N4ZnMfHExQY=</UserPassword>
   <WebApplicationUrl>https://org21a8ec22.crm3.dynamics.com</WebApplicationUrl>
 </ConnectionDetail>

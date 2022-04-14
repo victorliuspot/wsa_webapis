@@ -17,7 +17,7 @@ namespace wsa_webapis.Controllers
             HttpResponseMessage result = null;
             try
             {
-                var sql = $"select documentbody,filename,filesize,isdocument,mimetype from annotation where annotationid='{id}' ";
+                var sql = $"select top 1 documentbody,filename,filesize,isdocument,mimetype from annotation where annotationid='{id}' ";
                 var docs = wsa_webapis.Sql4Cds.SqlQuery.Execute(sql) as System.Data.DataTable;
 
                 if (docs == null || docs.Rows.Count == 0)

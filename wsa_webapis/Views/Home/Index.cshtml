@@ -31,11 +31,14 @@
     }
     sql = $"{sql} order by createdon desc";
     var images = wsa_webapis.Sql4Cds.SqlQuery.Execute(sql) as System.Data.DataTable;
-    seaspan.hcwpce.sharepoint.Models.SPAnnotation ann = new seaspan.hcwpce.sharepoint.Models.SPAnnotation(objectid);
+    seaspan.hcwpce.sharepoint.Models.SPAnnotation ann = new seaspan.hcwpce.sharepoint.Models.SPAnnotation(objectid);    
     <div>&nbsp;</div>
     if (images == null || images.Rows.Count == 0)
     {
-        ann.LoadImages();
+        if (!string.IsNullOrEmpty(objectid))
+        {
+            ann.LoadImages();
+        }
         if (ann.Annotiations.Count == 0)
         {
             <div class="panel panel-default">

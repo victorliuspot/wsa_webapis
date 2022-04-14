@@ -279,6 +279,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\WSA_Horizontal_clr_cobrand.jpg" />
+    <Content Include="Reports\20220413_RPT_54784-01-ST-INS000021_2.html" />
     <Content Include="Resources\ConnectionsList.Default.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
